@@ -8,15 +8,15 @@ export function Navbar() {
         <div className="flex items-center gap-6">
           <Link to="/" className="flex items-center gap-2">
             <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              OnboardAI
+              agentforcehr.com
             </span>
           </Link>
           <nav className="hidden md:flex gap-6">
             <Link to="/features" className="text-sm font-medium hover:text-primary transition-colors">
               Features
             </Link>
-            <Link to="/pricing" className="text-sm font-medium hover:text-primary transition-colors">
-              Pricing
+            <Link to="/#hr-token" className="text-sm font-medium hover:text-primary transition-colors">
+              HR Token
             </Link>
             <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors">
               About

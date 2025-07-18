@@ -3,7 +3,7 @@ import { Footer } from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { ChatDemo } from "@/components/chat-demo";
 import { FeatureCard } from "@/components/feature-card";
-import { PricingCard } from "@/components/pricing-card";
+
 import heroImage from "@/assets/hero-image.jpg";
 import featureDocuments from "@/assets/feature-documents.jpg";
 import featureScheduling from "@/assets/feature-scheduling.jpg";
@@ -30,11 +30,11 @@ const Index = () => {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                 Transform Employee Onboarding with{" "}
                 <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  AI Agents
+                  Eliza OS AI Agents
                 </span>
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground">
-                Create customized AI assistants that streamline the onboarding process, answer questions 24/7, and help new employees feel welcome from day one.
+                Create blockchain-powered AI assistants using Eliza OS (a16z) deployed on BSC. Pay with HR tokens to build agents that streamline onboarding and support new employees 24/7.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button variant="hero" size="xl" className="group">
@@ -62,10 +62,10 @@ const Index = () => {
         <section className="w-full py-20 px-4 bg-background">
           <div className="container mx-auto text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Why HR Teams Choose OnboardAI
+              Why HR Teams Choose agentforcehr.com
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our platform helps HR professionals create powerful onboarding experiences that save time, reduce errors, and delight new employees.
+              Our blockchain-powered platform uses Eliza OS and HR tokens to help HR professionals create intelligent onboarding experiences.
             </p>
           </div>
           <div className="container mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -192,61 +192,99 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Pricing Section */}
-        <section className="w-full py-20 px-4 bg-background" id="pricing">
+        {/* HR Token Section */}
+        <section className="w-full py-20 px-4 bg-background" id="hr-token">
           <div className="container mx-auto text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Simple, Transparent Pricing
+              HR Token - Your Gateway to AI Agents
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Choose the plan that fits your organization's size and needs
+              Purchase HR tokens on BSC to create and deploy your custom Eliza OS AI agents
             </p>
           </div>
-          <div className="container mx-auto grid md:grid-cols-3 gap-6 max-w-5xl">
-            <PricingCard
-              name="Starter"
-              description="Perfect for small teams just getting started"
-              price="$99"
-              features={[
-                { text: "Up to 50 employees", included: true },
-                { text: "1 Custom AI Agent", included: true },
-                { text: "Document Automation", included: true },
-                { text: "Email Support", included: true },
-                { text: "Advanced Analytics", included: false },
-                { text: "API Access", included: false },
-                { text: "Custom Integrations", included: false },
-              ]}
-            />
-            <PricingCard
-              name="Professional"
-              description="Ideal for growing companies with more needs"
-              price="$299"
-              features={[
-                { text: "Up to 200 employees", included: true },
-                { text: "3 Custom AI Agents", included: true },
-                { text: "Document Automation", included: true },
-                { text: "Priority Support", included: true },
-                { text: "Advanced Analytics", included: true },
-                { text: "API Access", included: true },
-                { text: "Custom Integrations", included: false },
-              ]}
-              popular
-            />
-            <PricingCard
-              name="Enterprise"
-              description="For large organizations with complex requirements"
-              price="Custom"
-              buttonText="Contact Sales"
-              features={[
-                { text: "Unlimited employees", included: true },
-                { text: "Unlimited AI Agents", included: true },
-                { text: "Document Automation", included: true },
-                { text: "Dedicated Support", included: true },
-                { text: "Advanced Analytics", included: true },
-                { text: "API Access", included: true },
-                { text: "Custom Integrations", included: true },
-              ]}
-            />
+          <div className="container mx-auto max-w-4xl">
+            <div className="bg-card rounded-lg p-8 border shadow-lg">
+              <div className="text-center mb-8">
+                <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4 text-primary">
+                  <Bot size={32} />
+                </div>
+                <h3 className="text-2xl font-bold mb-2">HR Token Benefits</h3>
+                <p className="text-muted-foreground">
+                  Deployed on Binance Smart Chain (BSC) for fast, low-cost transactions
+                </p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1 text-primary">
+                      <CheckCircle2 size={14} />
+                    </div>
+                    <div>
+                      <p className="font-medium">Pay-Per-Agent Creation</p>
+                      <p className="text-sm text-muted-foreground">Use tokens to create custom AI agents</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1 text-primary">
+                      <CheckCircle2 size={14} />
+                    </div>
+                    <div>
+                      <p className="font-medium">Blockchain Security</p>
+                      <p className="text-sm text-muted-foreground">Secure transactions on BSC network</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1 text-primary">
+                      <CheckCircle2 size={14} />
+                    </div>
+                    <div>
+                      <p className="font-medium">Low Transaction Fees</p>
+                      <p className="text-sm text-muted-foreground">Affordable costs on BSC</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="space-y-4">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1 text-primary">
+                      <CheckCircle2 size={14} />
+                    </div>
+                    <div>
+                      <p className="font-medium">Eliza OS Integration</p>
+                      <p className="text-sm text-muted-foreground">Powered by a16z's Eliza OS framework</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1 text-primary">
+                      <CheckCircle2 size={14} />
+                    </div>
+                    <div>
+                      <p className="font-medium">Token Balance Management</p>
+                      <p className="text-sm text-muted-foreground">Track usage in admin dashboard</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1 text-primary">
+                      <CheckCircle2 size={14} />
+                    </div>
+                    <div>
+                      <p className="font-medium">Scalable Solution</p>
+                      <p className="text-sm text-muted-foreground">Create unlimited agents with tokens</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="text-center">
+                <Button variant="hero" size="xl" className="group">
+                  Buy HR Tokens on DEX
+                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Button>
+                <p className="text-sm text-muted-foreground mt-4">
+                  Connect your wallet and purchase HR tokens to start creating AI agents
+                </p>
+              </div>
+            </div>
           </div>
         </section>
       </main>
