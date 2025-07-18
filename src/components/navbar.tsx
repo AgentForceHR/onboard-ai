@@ -28,7 +28,7 @@ export function Navbar() {
             <Link to="/login">Log in</Link>
           </Button>
           <Button variant="default" size="sm" asChild>
-            <Link to="/signup">Sign up</Link>
+            <Link to="/admin">Admin Dashboard</Link>
           </Button>
         </div>
       </div>
