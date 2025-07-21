@@ -18,9 +18,6 @@ export function Navbar() {
             <Link to="/#hr-token" className="text-sm font-medium hover:text-primary transition-colors">
               HR Token
             </Link>
-            <Link to="/employee" className="text-sm font-medium hover:text-primary transition-colors">
-              Employee Dashboard
-            </Link>
             <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors">
               About
             </Link>
