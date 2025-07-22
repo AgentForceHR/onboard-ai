@@ -30,11 +30,11 @@ const Index = () => {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
                 Transform Employee Onboarding with{" "}
                 <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Eliza OS AI Agents
+                  Blockchain AI Agents
                 </span>
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground">
-                Create blockchain-powered AI assistants using Eliza OS (a16z) deployed on BSC. Pay with HR tokens to build agents that streamline onboarding and support new employees 24/7.
+                Create secure blockchain-powered AI assistants that streamline onboarding and provide 24/7 support for new employees. Pay with HR tokens to build and deploy your custom agents.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <Button variant="hero" size="xl" className="group">
@@ -65,7 +65,7 @@ const Index = () => {
               Why HR Teams Choose agentforcehr.com
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our blockchain-powered platform uses Eliza OS and HR tokens to help HR professionals create intelligent onboarding experiences.
+              Our blockchain-powered platform uses HR tokens to help HR professionals create intelligent and secure onboarding experiences.
             </p>
           </div>
           <div className="container mx-auto grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -199,7 +199,7 @@ const Index = () => {
               HR Token - Your Gateway to AI Agents
             </h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Purchase HR tokens on BSC to create and deploy your custom Eliza OS AI agents
+              Purchase HR tokens on the blockchain to create and deploy your custom AI agents
             </p>
           </div>
           <div className="container mx-auto max-w-4xl">
@@ -210,7 +210,7 @@ const Index = () => {
                 </div>
                 <h3 className="text-2xl font-bold mb-2">HR Token Benefits</h3>
                 <p className="text-muted-foreground">
-                  Deployed on Binance Smart Chain (BSC) for fast, low-cost transactions
+                  Deployed on secure blockchain infrastructure for fast, low-cost transactions
                 </p>
               </div>
               
@@ -231,7 +231,7 @@ const Index = () => {
                     </div>
                     <div>
                       <p className="font-medium">Blockchain Security</p>
-                      <p className="text-sm text-muted-foreground">Secure transactions on BSC network</p>
+                      <p className="text-sm text-muted-foreground">Secure transactions on blockchain network</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">
@@ -240,7 +240,7 @@ const Index = () => {
                     </div>
                     <div>
                       <p className="font-medium">Low Transaction Fees</p>
-                      <p className="text-sm text-muted-foreground">Affordable costs on BSC</p>
+                      <p className="text-sm text-muted-foreground">Affordable blockchain transaction costs</p>
                     </div>
                   </div>
                 </div>
@@ -250,8 +250,8 @@ const Index = () => {
                       <CheckCircle2 size={14} />
                     </div>
                     <div>
-                      <p className="font-medium">Eliza OS Integration</p>
-                      <p className="text-sm text-muted-foreground">Powered by a16z's Eliza OS framework</p>
+                      <p className="font-medium">Advanced AI Integration</p>
+                      <p className="text-sm text-muted-foreground">Powered by cutting-edge AI framework</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3">

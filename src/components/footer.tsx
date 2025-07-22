@@ -5,7 +5,7 @@ export function Footer() {
     <footer className="bg-muted/30 border-t py-12">
       <div className="container grid grid-cols-1 md:grid-cols-4 gap-8">
         <div className="space-y-3">
-          <h3 className="text-lg font-medium">OnboardAI</h3>
+          <h3 className="text-lg font-medium">AgentForceHR</h3>
           <p className="text-sm text-muted-foreground">
             Streamlining employee onboarding with intelligent AI agents
           </p>
@@ -69,7 +69,7 @@ export function Footer() {
       <div className="container mt-8 pt-8 border-t">
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} OnboardAI. All rights reserved.
+            &copy; {new Date().getFullYear()} AgentForceHR. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <a href="#" className="text-muted-foreground hover:text-foreground">

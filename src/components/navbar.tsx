@@ -7,8 +7,8 @@ export function Navbar() {
       <div className="container flex h-16 items-center justify-between">
         <div className="flex items-center gap-6">
           <Link to="/" className="flex items-center gap-2">
-            <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-              agentforcehr.com
+            <span className="text-2xl font-bold tracking-tight bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent font-display">
+              AgentForceHR
             </span>
           </Link>
           <nav className="hidden md:flex gap-6">
@@ -27,8 +27,11 @@ export function Navbar() {
           <Button variant="ghost" size="sm" asChild>
             <Link to="/login">Log in</Link>
           </Button>
-          <Button variant="default" size="sm" asChild>
+          <Button variant="ghost" size="sm" asChild>
             <Link to="/admin">Admin Dashboard</Link>
+          </Button>
+          <Button variant="default" size="sm" asChild>
+            <Link to="/employee">Employee Portal</Link>
           </Button>
         </div>
       </div>
