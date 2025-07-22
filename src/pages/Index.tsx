@@ -287,6 +287,238 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        {/* ROI Section */}
+        <section className="w-full py-20 px-4 bg-muted/30">
+          <div className="container mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Measurable Return on Investment
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                AgentForceHR delivers quantifiable business impact with demonstrable ROI for organizations of all sizes
+              </p>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              <div className="bg-card rounded-lg p-8 border shadow-md hover:shadow-lg transition-all">
+                <div className="text-3xl font-bold text-primary mb-2">60%</div>
+                <h3 className="text-xl font-medium mb-3">Reduced Onboarding Time</h3>
+                <p className="text-muted-foreground">
+                  Streamline the entire onboarding workflow with intelligent automation, reducing total time from weeks to days.
+                </p>
+              </div>
+              <div className="bg-card rounded-lg p-8 border shadow-md hover:shadow-lg transition-all">
+                <div className="text-3xl font-bold text-primary mb-2">85%</div>
+                <h3 className="text-xl font-medium mb-3">HR Staff Efficiency</h3>
+                <p className="text-muted-foreground">
+                  Free your HR professionals from repetitive tasks, allowing them to focus on strategic initiatives and employee engagement.
+                </p>
+              </div>
+              <div className="bg-card rounded-lg p-8 border shadow-md hover:shadow-lg transition-all">
+                <div className="text-3xl font-bold text-primary mb-2">42%</div>
+                <h3 className="text-xl font-medium mb-3">Lower Training Costs</h3>
+                <p className="text-muted-foreground">
+                  Reduce training expenses through consistent, personalized and accessible AI-driven knowledge transfer solutions.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Enterprise Solutions Section */}
+        <section className="w-full py-20 px-4 bg-background">
+          <div className="container mx-auto">
+            <div className="grid md:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6">
+                <h2 className="text-3xl md:text-4xl font-bold">
+                  Enterprise-Grade Solutions for Modern HR Teams
+                </h2>
+                <p className="text-lg text-muted-foreground">
+                  Customize and scale your onboarding processes with advanced blockchain-secured AI agents that integrate seamlessly with your existing HR systems.
+                </p>
+                <div className="space-y-4 mt-6">
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1 text-primary">
+                      <FileCheck size={14} />
+                    </div>
+                    <div>
+                      <p className="font-medium">Enterprise-Level Security</p>
+                      <p className="text-sm text-muted-foreground">Advanced encryption with blockchain verification ensures your employee data remains protected.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1 text-primary">
+                      <FileCheck size={14} />
+                    </div>
+                    <div>
+                      <p className="font-medium">Seamless Integration</p>
+                      <p className="text-sm text-muted-foreground">Connect with HRIS, ATS, LMS, and other HR systems through our robust API architecture.</p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1 text-primary">
+                      <FileCheck size={14} />
+                    </div>
+                    <div>
+                      <p className="font-medium">Dedicated Success Manager</p>
+                      <p className="text-sm text-muted-foreground">Enterprise clients receive personalized implementation and ongoing optimization support.</p>
+                    </div>
+                  </div>
+                </div>
+                <Button variant="outline-primary" size="lg" className="mt-4">
+                  Learn About Enterprise Solutions
+                </Button>
+              </div>
+              <div className="bg-gradient-to-br from-primary/5 to-secondary/5 p-8 rounded-lg border">
+                <div className="bg-card rounded-lg p-6 border shadow-lg">
+                  <h3 className="text-xl font-bold mb-4">Case Study: Global Financial Firm</h3>
+                  <p className="text-muted-foreground mb-4">
+                    "AgentForceHR transformed our multinational onboarding process, reducing costs by 38% while improving new hire satisfaction scores by 47%. The blockchain security features were essential for our compliance requirements."
+                  </p>
+                  <div className="flex items-center gap-3 mt-6">
+                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                      <Users size={24} />
+                    </div>
+                    <div>
+                      <p className="font-medium">Sarah Johnson</p>
+                      <p className="text-sm text-muted-foreground">VP of Global Human Resources</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        {/* Compliance Section */}
+        <section className="w-full py-20 px-4 bg-muted/30">
+          <div className="container mx-auto text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Compliance & Security by Design
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Our blockchain-powered platform ensures regulatory compliance while providing unmatched data security
+            </p>
+          </div>
+          <div className="container mx-auto max-w-4xl">
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-card rounded-lg p-8 border shadow-md">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                    <FileCheck size={16} />
+                  </span>
+                  Regulatory Compliance
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1 text-primary">
+                      <CheckCircle2 size={12} />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      <span className="font-medium text-foreground">GDPR Compliant:</span> Full data protection and privacy controls.
+                    </p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1 text-primary">
+                      <CheckCircle2 size={12} />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      <span className="font-medium text-foreground">SOC 2 Type II:</span> Certified security practices and controls.
+                    </p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1 text-primary">
+                      <CheckCircle2 size={12} />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      <span className="font-medium text-foreground">Industry Specific:</span> Configurable to meet financial, healthcare, and other regulatory requirements.
+                    </p>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-card rounded-lg p-8 border shadow-md">
+                <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                  <span className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+                    <FileCheck size={16} />
+                  </span>
+                  Advanced Security
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1 text-primary">
+                      <CheckCircle2 size={12} />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      <span className="font-medium text-foreground">Blockchain Verification:</span> Immutable record-keeping and transparent auditing.
+                    </p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1 text-primary">
+                      <CheckCircle2 size={12} />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      <span className="font-medium text-foreground">End-to-End Encryption:</span> All data encrypted in transit and at rest.
+                    </p>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-1 text-primary">
+                      <CheckCircle2 size={12} />
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      <span className="font-medium text-foreground">Role-Based Access:</span> Granular permissions to ensure data access only to authorized personnel.
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="w-full py-20 px-4 bg-background">
+          <div className="container mx-auto max-w-4xl">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                Frequently Asked Questions
+              </h2>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Get answers to common questions about AgentForceHR
+              </p>
+            </div>
+            <div className="space-y-6">
+              <div className="bg-card rounded-lg p-6 border shadow-sm">
+                <h3 className="text-xl font-bold mb-2">How do HR tokens work with the platform?</h3>
+                <p className="text-muted-foreground">
+                  HR tokens are blockchain-based utility tokens that power our platform. Each token represents a unit of AI agent creation capability. HR professionals purchase tokens and use them to create custom onboarding agents. The tokens are stored in your secure wallet, and the balance is displayed in your admin dashboard. When you create a new agent, tokens are deducted from your balance automatically.
+                </p>
+              </div>
+              <div className="bg-card rounded-lg p-6 border shadow-sm">
+                <h3 className="text-xl font-bold mb-2">How much training does my team need to create effective AI agents?</h3>
+                <p className="text-muted-foreground">
+                  Our platform is designed with an intuitive interface that requires minimal training. Most HR teams are able to create their first AI agent within hours of implementation. We provide comprehensive documentation, video tutorials, and a dedicated onboarding specialist who will guide your team through the process. For enterprise clients, we offer customized training sessions tailored to your specific needs.
+                </p>
+              </div>
+              <div className="bg-card rounded-lg p-6 border shadow-sm">
+                <h3 className="text-xl font-bold mb-2">Can we customize the onboarding experience for different departments?</h3>
+                <p className="text-muted-foreground">
+                  Absolutely. AgentForceHR excels at creating personalized experiences. You can build department-specific agents with customized knowledge bases, workflows, and documentation requirements. Our platform supports role-based templates that can be further customized for each department's unique onboarding needs, ensuring new hires receive relevant information regardless of their position within your organization.
+                </p>
+              </div>
+              <div className="bg-card rounded-lg p-6 border shadow-sm">
+                <h3 className="text-xl font-bold mb-2">How does AgentForceHR integrate with our existing HR systems?</h3>
+                <p className="text-muted-foreground">
+                  Our platform offers robust API integration capabilities that connect seamlessly with most popular HRIS systems, applicant tracking systems, learning management systems, and document management platforms. We provide pre-built integrations for systems like Workday, SAP SuccessFactors, BambooHR, and many others. For custom or legacy systems, our integration team will work with you to develop secure data exchange pathways.
+                </p>
+              </div>
+              <div className="bg-card rounded-lg p-6 border shadow-sm">
+                <h3 className="text-xl font-bold mb-2">What security measures are in place to protect sensitive employee data?</h3>
+                <p className="text-muted-foreground">
+                  Security is a core component of our platform. We implement multiple layers of protection including blockchain verification for immutable record-keeping, end-to-end encryption for all data, role-based access controls, regular security audits, and compliance with major security frameworks (SOC 2 Type II, GDPR, HIPAA where applicable). All sensitive employee information is encrypted at rest and in transit, with access strictly limited to authorized personnel within your organization.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </>
