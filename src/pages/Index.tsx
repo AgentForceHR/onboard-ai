@@ -1,10 +1,12 @@
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { BackToTop } from "@/components/back-to-top";
 import { Button } from "@/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ChatDemo } from "@/components/chat-demo";
 import { FeatureCard } from "@/components/feature-card";
 
-import heroImage from "@/assets/hero-image.jpg";
+import heroImage from "@/assets/ai-hr-future-hero.jpg";
 import featureDocuments from "@/assets/feature-documents.jpg";
 import featureScheduling from "@/assets/feature-scheduling.jpg";
 import featureTraining from "@/assets/feature-training.jpg";
@@ -485,42 +487,53 @@ const Index = () => {
                 Get answers to common questions about AgentForceHR
               </p>
             </div>
-            <div className="space-y-6">
-              <div className="bg-card rounded-lg p-6 border shadow-sm">
-                <h3 className="text-xl font-bold mb-2">How do HR tokens work with the platform?</h3>
-                <p className="text-muted-foreground">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="item-1">
+                <AccordionTrigger className="text-left text-xl font-bold">
+                  How do HR tokens work with the platform?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
                   HR tokens are blockchain-based utility tokens that power our platform. Each token represents a unit of AI agent creation capability. HR professionals purchase tokens and use them to create custom onboarding agents. The tokens are stored in your secure wallet, and the balance is displayed in your admin dashboard. When you create a new agent, tokens are deducted from your balance automatically.
-                </p>
-              </div>
-              <div className="bg-card rounded-lg p-6 border shadow-sm">
-                <h3 className="text-xl font-bold mb-2">How much training does my team need to create effective AI agents?</h3>
-                <p className="text-muted-foreground">
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionTrigger className="text-left text-xl font-bold">
+                  How much training does my team need to create effective AI agents?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
                   Our platform is designed with an intuitive interface that requires minimal training. Most HR teams are able to create their first AI agent within hours of implementation. We provide comprehensive documentation, video tutorials, and a dedicated onboarding specialist who will guide your team through the process. For enterprise clients, we offer customized training sessions tailored to your specific needs.
-                </p>
-              </div>
-              <div className="bg-card rounded-lg p-6 border shadow-sm">
-                <h3 className="text-xl font-bold mb-2">Can we customize the onboarding experience for different departments?</h3>
-                <p className="text-muted-foreground">
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-3">
+                <AccordionTrigger className="text-left text-xl font-bold">
+                  Can we customize the onboarding experience for different departments?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
                   Absolutely. AgentForceHR excels at creating personalized experiences. You can build department-specific agents with customized knowledge bases, workflows, and documentation requirements. Our platform supports role-based templates that can be further customized for each department's unique onboarding needs, ensuring new hires receive relevant information regardless of their position within your organization.
-                </p>
-              </div>
-              <div className="bg-card rounded-lg p-6 border shadow-sm">
-                <h3 className="text-xl font-bold mb-2">How does AgentForceHR integrate with our existing HR systems?</h3>
-                <p className="text-muted-foreground">
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-4">
+                <AccordionTrigger className="text-left text-xl font-bold">
+                  How does AgentForceHR integrate with our existing HR systems?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
                   Our platform offers robust API integration capabilities that connect seamlessly with most popular HRIS systems, applicant tracking systems, learning management systems, and document management platforms. We provide pre-built integrations for systems like Workday, SAP SuccessFactors, BambooHR, and many others. For custom or legacy systems, our integration team will work with you to develop secure data exchange pathways.
-                </p>
-              </div>
-              <div className="bg-card rounded-lg p-6 border shadow-sm">
-                <h3 className="text-xl font-bold mb-2">What security measures are in place to protect sensitive employee data?</h3>
-                <p className="text-muted-foreground">
+                </AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-5">
+                <AccordionTrigger className="text-left text-xl font-bold">
+                  What security measures are in place to protect sensitive employee data?
+                </AccordionTrigger>
+                <AccordionContent className="text-muted-foreground">
                   Security is a core component of our platform. We implement multiple layers of protection including blockchain verification for immutable record-keeping, end-to-end encryption for all data, role-based access controls, regular security audits, and compliance with major security frameworks (SOC 2 Type II, GDPR, HIPAA where applicable). All sensitive employee information is encrypted at rest and in transit, with access strictly limited to authorized personnel within your organization.
-                </p>
-              </div>
-            </div>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
           </div>
         </section>
       </main>
       <Footer />
+      <BackToTop />
     </>
   );
 };
