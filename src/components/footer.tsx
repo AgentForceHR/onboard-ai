@@ -5,7 +5,12 @@ export function Footer() {
     <footer className="bg-muted/30 border-t py-12">
       <div className="container grid grid-cols-1 md:grid-cols-4 gap-8">
         <div className="space-y-3">
-          <h3 className="text-lg font-medium">AgentForceHR</h3>
+          <Link to="/" className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+              <span className="text-white font-bold text-xs">HR</span>
+            </div>
+            <span className="text-lg font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">AgentForceHR</span>
+          </Link>
           <p className="text-sm text-muted-foreground">
             Streamlining employee onboarding with intelligent AI agents
           </p>
@@ -108,7 +113,7 @@ export function Footer() {
               </svg>
               <span className="sr-only">LinkedIn</span>
             </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground">
+            <a href="https://github.com" className="text-muted-foreground hover:text-foreground">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"

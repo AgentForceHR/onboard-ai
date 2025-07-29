@@ -34,7 +34,7 @@ export function Navbar() {
           <Button variant="ghost" size="sm" asChild>
             <Link to="/login">Log in</Link>
           </Button>
-          <Button variant="default" size="sm" asChild className="bg-secondary hover:bg-secondary/80">
+          <Button variant="default" size="sm" asChild className="bg-primary hover:bg-primary/80">
             <Link to="/admin">Admin Dashboard</Link>
           </Button>
           <Button variant="default" size="sm" asChild>

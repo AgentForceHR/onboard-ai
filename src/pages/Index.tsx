@@ -6,7 +6,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { ChatDemo } from "@/components/chat-demo";
 import { FeatureCard } from "@/components/feature-card";
 
-import heroImage from "@/assets/ai-hr-future-hero.jpg";
+import heroImage from "@/assets/hero-option-3.jpg";
 import featureDocuments from "@/assets/feature-documents.jpg";
 import featureScheduling from "@/assets/feature-scheduling.jpg";
 import featureTraining from "@/assets/feature-training.jpg";
@@ -146,54 +146,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* Features Section */}
-        <section className="w-full py-20 px-4 bg-background">
-          <div className="container mx-auto text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Key Features
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our comprehensive platform offers everything you need to create effective onboarding experiences.
-            </p>
-          </div>
-          <div className="container mx-auto grid md:grid-cols-3 gap-6">
-            <FeatureCard
-              icon={featureDocuments}
-              title="Document Processing"
-              description="Automate paperwork collection and verification with intelligent document processing and digital signatures."
-              gradient
-            />
-            <FeatureCard
-              icon={featureScheduling}
-              title="Smart Scheduling"
-              description="Automatically schedule orientation sessions, training, and one-on-ones with team members and managers."
-              gradient
-            />
-            <FeatureCard
-              icon={featureTraining}
-              title="Knowledge Transfer"
-              description="Create custom training paths that adapt to each employee's role, experience, and learning pace."
-              gradient
-            />
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="w-full py-20 px-4 bg-gradient-to-r from-primary/10 to-secondary/10">
-          <div className="container mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Transform Your Onboarding Process?
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-              Join hundreds of companies that have improved employee satisfaction and reduced onboarding time by up to 60%.
-            </p>
-            <Button variant="hero" size="xl" className="group">
-              Start Your Free Trial
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-          </div>
-        </section>
-
         {/* HR Token Section */}
         <section className="w-full py-20 px-4 bg-background" id="hr-token">
           <div className="container mx-auto text-center mb-16">
@@ -289,6 +241,39 @@ const Index = () => {
             </div>
           </div>
         </section>
+
+        {/* Features Section */}
+        <section className="w-full py-20 px-4 bg-background">
+          <div className="container mx-auto text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Key Features
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Our comprehensive platform offers everything you need to create effective onboarding experiences.
+            </p>
+          </div>
+          <div className="container mx-auto grid md:grid-cols-3 gap-6">
+            <FeatureCard
+              icon={featureDocuments}
+              title="Document Processing"
+              description="Automate paperwork collection and verification with intelligent document processing and digital signatures."
+              gradient
+            />
+            <FeatureCard
+              icon={featureScheduling}
+              title="Smart Scheduling"
+              description="Automatically schedule orientation sessions, training, and one-on-ones with team members and managers."
+              gradient
+            />
+            <FeatureCard
+              icon={featureTraining}
+              title="Knowledge Transfer"
+              description="Create custom training paths that adapt to each employee's role, experience, and learning pace."
+              gradient
+            />
+          </div>
+        </section>
+
 
         {/* ROI Section */}
         <section className="w-full py-20 px-4 bg-muted/30">
@@ -473,6 +458,22 @@ const Index = () => {
                 </ul>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="w-full py-20 px-4 bg-gradient-to-r from-primary/10 to-secondary/10">
+          <div className="container mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Ready to Transform Your Onboarding Process?
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+              Join hundreds of companies that have improved employee satisfaction and reduced onboarding time by up to 60%.
+            </p>
+            <Button variant="hero" size="xl" className="group">
+              Start Your Free Trial
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Button>
           </div>
         </section>
 
