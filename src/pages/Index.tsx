@@ -461,22 +461,6 @@ const Index = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="w-full py-20 px-4 bg-gradient-to-r from-primary/10 to-secondary/10">
-          <div className="container mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Transform Your Onboarding Process?
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-              Join hundreds of companies that have improved employee satisfaction and reduced onboarding time by up to 60%.
-            </p>
-            <Button variant="hero" size="xl" className="group">
-              Start Your Free Trial
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Button>
-          </div>
-        </section>
-
         {/* FAQ Section */}
         <section className="w-full py-20 px-4 bg-background">
           <div className="container mx-auto max-w-4xl">
@@ -530,6 +514,22 @@ const Index = () => {
                 </AccordionContent>
               </AccordionItem>
             </Accordion>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="w-full py-20 px-4 bg-gradient-to-r from-primary/10 to-secondary/10">
+          <div className="container mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Ready to Transform Your Onboarding Process?
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
+              Join hundreds of companies that have improved employee satisfaction and reduced onboarding time by up to 60%.
+            </p>
+            <Button variant="hero" size="xl" className="group">
+              Start Your Free Trial
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Button>
           </div>
         </section>
       </main>

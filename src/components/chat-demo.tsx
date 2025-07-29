@@ -85,14 +85,14 @@ export function ChatDemo() {
         />
       </div>
       <Card className="border-2 border-primary/20 shadow-lg overflow-hidden bg-card/80 backdrop-blur-sm">
-        <div className="bg-gradient-to-r from-primary to-secondary p-3 text-primary-foreground">
+        <div className="bg-slate-800 p-3 text-white">
           <div className="flex items-center gap-2">
-            <Avatar className="h-8 w-8 bg-gradient-to-br from-primary to-secondary">
+            <Avatar className="h-8 w-8 bg-slate-700 flex items-center justify-center">
               <span className="text-white text-xs font-bold">HR</span>
             </Avatar>
             <div>
-              <h3 className="font-medium text-sm text-white">Onboarding Assistant</h3>
-              <p className="text-xs text-white/80">Always available to help</p>
+              <h3 className="font-medium text-sm text-white">Smart HR Assistant</h3>
+              <p className="text-xs text-white/80">Ready to guide your journey</p>
             </div>
           </div>
         </div>
