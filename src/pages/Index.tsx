@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ChatDemo } from "@/components/chat-demo";
 import { FeatureCard } from "@/components/feature-card";
+import { Link } from "react-router-dom";
 
 import heroImage from "@/assets/hero-option-3.jpg";
 import featureDocuments from "@/assets/feature-documents.jpg";
@@ -43,8 +44,8 @@ const Index = () => {
                   Get Started Free
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Button>
-                <Button variant="outline-primary" size="xl">
-                  Request Demo
+                <Button variant="outline-primary" size="xl" asChild>
+                  <Link to="/demo">Check the Demo</Link>
                 </Button>
               </div>
             </div>
@@ -137,6 +138,9 @@ const Index = () => {
                   <p className="text-sm text-muted-foreground mb-4">
                     Try asking about benefits, laptop setup, or orientation schedule in the demo →
                   </p>
+                  <Button variant="outline" size="sm" asChild>
+                    <Link to="/demo">Check the Demo</Link>
+                  </Button>
                 </div>
               </div>
               <div className="flex-1">
