@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { CheckCircle, Clock, FileText, MessageSquare, Briefcase, Calendar, Users, Newspaper } from "lucide-react";
 
 const EmployeePortal = () => {
@@ -46,13 +47,16 @@ const EmployeePortal = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
       <div className="container mx-auto px-4 py-8">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
-            Employee Portal
-          </h1>
-          <p className="text-muted-foreground">
-            Welcome back! Here's your onboarding progress and important updates.
-          </p>
+        <div className="mb-8 flex justify-between items-start">
+          <div>
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
+              Employee Portal
+            </h1>
+            <p className="text-muted-foreground">
+              Welcome back! Here's your onboarding progress and important updates.
+            </p>
+          </div>
+          <ThemeToggle />
         </div>
 
         <div className="grid gap-6 md:grid-cols-3 mb-8">
