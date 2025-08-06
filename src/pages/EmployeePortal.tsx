@@ -16,7 +16,11 @@ import {
   Plus
 } from "lucide-react";
 
+console.log('EmployeePortal: All imports loaded successfully');
+
 const EmployeePortal = () => {
+  console.log('EmployeePortal: Component rendering started');
+
   const tasks = [
     {
       title: "Complete I-9 Verification",
@@ -89,6 +93,8 @@ const EmployeePortal = () => {
 
   const completedTasks = tasks.filter(task => task.status === 'completed').length;
   const progressPercentage = (completedTasks / tasks.length) * 100;
+
+  console.log('EmployeePortal: About to render JSX');
 
   return (
     <div className="min-h-screen bg-background">
