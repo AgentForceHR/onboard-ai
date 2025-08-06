@@ -1,48 +1,70 @@
+import { useState, useEffect } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { apiClient, Agent } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { ChatInterface } from "@/components/chat/ChatInterface";
+import { useToast } from "@/hooks/use-toast";
 import { CheckCircle, Clock, FileText, MessageSquare, Briefcase, Calendar, Users, Newspaper } from "lucide-react";
 
 const EmployeePortal = () => {
-  const completedTasks = [
-    "Personal Information Form",
-    "Emergency Contacts",
-    "Direct Deposit Setup"
-  ];
+  const { user, logout } = useAuth();
+  const { toast } = useToast();
+  const [dashboardData, setDashboardData] = useState<any>(null);
+  const [tasks, setTasks] = useState<any[]>([]);
+  const [agents, setAgents] = useState<Agent[]>([]);
+  const [selectedAgent, setSelectedAgent] = useState<Agent | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  const pendingTasks = [
-    "Complete Benefits Enrollment",
-    "Review Employee Handbook",
-    "Schedule IT Setup Meeting",
-    "Submit Profile Photo"
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        
+        // Fetch dashboard data, tasks, and agents in parallel
+        const [dashboardResponse, tasksResponse, agentsResponse] = await Promise.all([
+          apiClient.getEmployeeDashboard(),
+          apiClient.getEmployeeTasks(),
+          apiClient.getEmployeeAgents()
+        ]);
 
-  const newsItems = [
-    {
-      id: 1,
-      title: "New Health Benefits Package Available",
-      date: "2 days ago",
-      summary: "We've upgraded our health insurance options with better coverage and lower deductibles.",
-      type: "Benefits"
-    },
-    {
-      id: 2,
-      title: "Q4 Company All-Hands Meeting",
-      date: "1 week ago",
-      summary: "Join us for our quarterly review and upcoming project announcements this Friday.",
-      type: "Event"
-    },
-    {
-      id: 3,
-      title: "Welcome to Our New Team Members",
-      date: "2 weeks ago",
-      summary: "Please join us in welcoming 8 new hires across Engineering, Sales, and Marketing.",
-      type: "Team"
-    }
-  ];
+        if (dashboardResponse.success && dashboardResponse.data) {
+          setDashboardData(dashboardResponse.data);
+        }
+
+        if (tasksResponse.success && tasksResponse.data) {
+          setTasks(tasksResponse.data.tasks);
+        }
+
+        if (agentsResponse.success && agentsResponse.data) {
+          setAgents(agentsResponse.data.agents);
+          // Auto-select first agent if available
+          if (agentsResponse.data.agents.length > 0) {
+            setSelectedAgent(agentsResponse.data.agents[0]);
+          }
+        }
+      } catch (error: any) {
+        console.error('Failed to fetch employee data:', error);
+        toast({
+          title: 'Error',
+          description: 'Failed to load dashboard data',
+          variant: 'destructive'
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [toast]);
+
+  const completedTasks = tasks.filter(task => task.status === 'completed');
+  const pendingTasks = tasks.filter(task => task.status !== 'completed');
+  const overallProgress = dashboardData?.onboardingProgress?.percentage || 0;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
@@ -50,15 +72,27 @@ const EmployeePortal = () => {
         <div className="mb-8 flex justify-between items-start">
           <div>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
-              Employee Portal
+              Welcome, {user?.firstName}!
             </h1>
             <p className="text-muted-foreground">
-              Welcome back! Here's your onboarding progress and important updates.
+              Here's your onboarding progress and important updates.
             </p>
           </div>
-          <ThemeToggle />
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Button variant="outline" onClick={logout}>
+              Logout
+            </Button>
+          </div>
         </div>
 
+        {loading ? (
+          <div className="text-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto"></div>
+            <p className="mt-4 text-muted-foreground">Loading your dashboard...</p>
+          </div>
+        ) : (
+          <>
         <div className="grid gap-6 md:grid-cols-3 mb-8">
           <Card className="border-2 border-primary/20 bg-gradient-to-br from-primary/5 to-secondary/5">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -66,7 +100,7 @@ const EmployeePortal = () => {
               <CheckCircle className="h-4 w-4 text-primary" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-primary">75%</div>
+              <div className="text-2xl font-bold text-primary">{overallProgress}%</div>
               <p className="text-xs text-muted-foreground">
                 Onboarding completion
               </p>
@@ -79,7 +113,7 @@ const EmployeePortal = () => {
               <Clock className="h-4 w-4 text-secondary" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-secondary">{pendingTasks.length}</div>
+              <div className="text-2xl font-bold text-secondary">{pendingTasks?.length || 0}</div>
               <p className="text-xs text-muted-foreground">
                 Tasks remaining
               </p>
@@ -88,13 +122,13 @@ const EmployeePortal = () => {
 
           <Card className="border-2 border-accent/20 bg-gradient-to-br from-accent/5 to-primary/5">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Documents</CardTitle>
-              <FileText className="h-4 w-4 text-accent" />
+              <CardTitle className="text-sm font-medium">AI Assistants</CardTitle>
+              <MessageSquare className="h-4 w-4 text-accent" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-accent">2</div>
+              <div className="text-2xl font-bold text-accent">{agents.length}</div>
               <p className="text-xs text-muted-foreground">
-                Awaiting signature
+                Available to help
               </p>
             </CardContent>
           </Card>
@@ -110,45 +144,29 @@ const EmployeePortal = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
-                  {completedTasks.map((task, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 border rounded-lg bg-gradient-to-r from-green-50 to-background dark:from-green-950/20">
-                      <CheckCircle className="h-4 w-4 text-green-500" />
-                      <span className="text-sm">{task}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2">
-                  <MessageSquare className="h-5 w-5" />
-                  Your AI Assistant
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <Badge variant="secondary" className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
-                      Online & Ready
-                    </Badge>
-                    <span className="text-xs text-muted-foreground">Last active: now</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground">
-                    I'm here to help with any questions about your onboarding, benefits, or company policies.
+                {completedTasks.length === 0 ? (
+                  <p className="text-muted-foreground text-center py-4">
+                    No tasks completed yet. Keep going!
                   </p>
-                  <Button className="w-full">
-                    <MessageSquare className="h-4 w-4 mr-2" />
-                    Start Conversation
-                  </Button>
-                </div>
+                ) : (
+                  <div className="space-y-3">
+                    {completedTasks.map((task) => (
+                      <div key={task.id} className="flex items-center gap-3 p-3 border rounded-lg bg-gradient-to-r from-green-50 to-background dark:from-green-950/20">
+                      <CheckCircle className="h-4 w-4 text-green-500" />
+                        <div className="flex-1">
+                          <span className="text-sm font-medium">{task.title}</span>
+                          <p className="text-xs text-muted-foreground">{task.description}</p>
+                        </div>
+                        <Badge variant="outline" className="text-xs">
+                          {task.category}
+                        </Badge>
+                    </div>
+                    ))}
+                  </div>
+                )}
               </CardContent>
             </Card>
-          </div>
 
-          <div className="space-y-6">
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center gap-2">
@@ -157,15 +175,152 @@ const EmployeePortal = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent>
-                <div className="space-y-3">
-                  {pendingTasks.map((task, index) => (
-                    <div key={index} className="flex items-center justify-between p-3 border rounded-lg bg-gradient-to-r from-orange-50 to-background dark:from-orange-950/20">
-                      <div className="flex items-center gap-3">
-                        <Clock className="h-4 w-4 text-orange-500" />
-                        <span className="text-sm">{task}</span>
+                {pendingTasks.length === 0 ? (
+                  <p className="text-muted-foreground text-center py-4">
+                    🎉 All tasks completed! Great job!
+                  </p>
+                ) : (
+                  <div className="space-y-3">
+                    {pendingTasks.slice(0, 5).map((task) => (
+                      <div key={task.id} className="flex items-center justify-between p-3 border rounded-lg bg-gradient-to-r from-orange-50 to-background dark:from-orange-950/20">
+                        <div className="flex items-center gap-3">
+                          <Clock className="h-4 w-4 text-orange-500" />
+                          <div>
+                            <span className="text-sm font-medium">{task.title}</span>
+                            <p className="text-xs text-muted-foreground">{task.estimatedTime}</p>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Badge variant="outline" className="text-xs">
+                            {task.priority}
+                          </Badge>
+                          <Button size="sm" variant="outline">
+                            Start
+                          </Button>
+                        </div>
                       </div>
-                      <Button size="sm" variant="outline">
-                        Start
+                    ))}
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="space-y-6">
+            {/* AI Assistant Selection */}
+            {agents.length > 0 && (
+              <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <MessageSquare className="h-5 w-5" />
+                  Your AI Assistants
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-2 mb-4">
+                  {agents.map((agent) => (
+                    <div
+                      key={agent._id}
+                      className={`p-3 border rounded-lg cursor-pointer transition-colors ${
+                        selectedAgent?._id === agent._id
+                          ? 'bg-primary/10 border-primary'
+                          : 'hover:bg-muted/50'
+                      }`}
+                      onClick={() => setSelectedAgent(agent)}
+                    >
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <h4 className="font-medium text-sm">{agent.name}</h4>
+                          <p className="text-xs text-muted-foreground">{agent.description}</p>
+                        </div>
+                        <Badge variant="secondary" className="bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                          Online
+                        </Badge>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+            )}
+
+            {/* Chat Interface */}
+            {selectedAgent ? (
+              <ChatInterface agent={selectedAgent} />
+            ) : agents.length === 0 ? (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2">
+                    <MessageSquare className="h-5 w-5" />
+                    AI Assistant
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="text-center py-8">
+                    <MessageSquare className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                    <p className="text-muted-foreground">
+                      No AI assistants assigned yet.
+                    </p>
+                    <p className="text-sm text-muted-foreground mt-2">
+                      Contact your HR team to get started!
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            ) : null}
+
+            {/* Company News */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Newspaper className="h-5 w-5" />
+                  Company Updates
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+                    <div className="flex items-start justify-between mb-2">
+                      <h4 className="font-medium text-sm">Welcome to the Team!</h4>
+                      <Badge variant="outline" className="text-xs">
+                        Welcome
+                      </Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-2">
+                      We're excited to have you join our team. Your onboarding journey starts here!
+                    </p>
+                    <span className="text-xs text-muted-foreground">
+                      Today
+                    </span>
+                  </div>
+                  
+                  <div className="p-4 border rounded-lg hover:bg-muted/50 transition-colors">
+                    <div className="flex items-start justify-between mb-2">
+                      <h4 className="font-medium text-sm">Benefits Enrollment Deadline</h4>
+                      <Badge variant="outline" className="text-xs">
+                        Benefits
+                      </Badge>
+                    </div>
+                    <p className="text-xs text-muted-foreground mb-2">
+                      Don't forget to complete your benefits enrollment by the end of the week.
+                    </p>
+                    <span className="text-xs text-muted-foreground">
+                      2 days ago
+                    </span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+          </>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default EmployeePortal;
                       </Button>
                     </div>
                   ))}

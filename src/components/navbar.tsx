@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/hooks/useAuth";
 
 export function Navbar() {
+  const { user, isAuthenticated, logout } = useAuth();
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b bg-background/80 backdrop-blur-md">
       <div className="container flex h-16 items-center justify-between">
@@ -34,15 +37,34 @@ export function Navbar() {
         </div>
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          <Button variant="ghost" size="sm" asChild>
-            <Link to="/login">Log in</Link>
-          </Button>
-          <Button variant="default" size="sm" asChild className="bg-primary hover:bg-primary/80">
-            <Link to="/admin">Admin Dashboard</Link>
-          </Button>
-          <Button variant="default" size="sm" asChild>
-            <Link to="/employee">Employee Portal</Link>
-          </Button>
+          {isAuthenticated ? (
+            <>
+              <span className="text-sm text-muted-foreground">
+                Welcome, {user?.firstName}
+              </span>
+              {user?.role === 'admin' || user?.role === 'hr' ? (
+                <Button variant="default" size="sm" asChild className="bg-primary hover:bg-primary/80">
+                  <Link to="/admin">Dashboard</Link>
+                </Button>
+              ) : (
+                <Button variant="default" size="sm" asChild>
+                  <Link to="/employee">My Portal</Link>
+                </Button>
+              )}
+              <Button variant="ghost" size="sm" onClick={logout}>
+                Logout
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button variant="ghost" size="sm" asChild>
+                <Link to="/login">Log in</Link>
+              </Button>
+              <Button variant="default" size="sm" asChild className="bg-primary hover:bg-primary/80">
+                <Link to="/login">Get Started</Link>
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </header>

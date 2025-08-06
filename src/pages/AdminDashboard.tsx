@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useAuth } from "@/hooks/useAuth";
+import { useAgents } from "@/hooks/useAgents";
+import { apiClient } from "@/lib/api";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -11,20 +14,20 @@ import { useToast } from "@/hooks/use-toast";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function AdminDashboard() {
-  const [tokenBalance, setTokenBalance] = useState(150);
-  const [agents, setAgents] = useState([
-    { id: 1, name: "Onboarding Assistant", status: "Active", tokensUsed: 50 },
-    { id: 2, name: "Policy Guide", status: "Active", tokensUsed: 30 },
-  ]);
+  const { user, logout } = useAuth();
+  const { agents, loading, createAgent } = useAgents();
+  const [tokenBalance, setTokenBalance] = useState(150); // This would come from blockchain
   const [isCreating, setIsCreating] = useState(false);
   const [newAgent, setNewAgent] = useState({
     name: "",
     description: "",
-    tasks: "",
+    onboardingScript: "",
+    personality: "professional",
+    responseStyle: "helpful"
   });
   const { toast } = useToast();
 
-  const handleCreateAgent = () => {
+  const handleCreateAgent = async () => {
     if (!newAgent.name || !newAgent.description) {
       toast({
         title: "Error",
@@ -43,8 +46,21 @@ export default function AdminDashboard() {
       return;
     }
 
-    const agent = {
-      id: agents.length + 1,
+    try {
+      await createAgent({
+        name: newAgent.name,
+        description: newAgent.description,
+        onboardingScript: newAgent.onboardingScript || `Hello! I'm ${newAgent.name}. I'm here to help you with your onboarding process.`,
+        configuration: {
+          personality: newAgent.personality,
+          responseStyle: newAgent.responseStyle,
+          knowledgeBase: [],
+          workflows: []
+        }
+      });
+
+      setTokenBalance(tokenBalance - 50); // Simulate token deduction
+      setNewAgent({ 
       name: newAgent.name,
       status: "Active",
       tokensUsed: 50,
@@ -59,19 +75,15 @@ export default function AdminDashboard() {
       title: "Agent Created",
       description: `${newAgent.name} has been created successfully`,
     });
-  };
-
-  const handleBuyTokens = () => {
-    // Simulate buying tokens (in real app, this would redirect to DEX)
-    window.open("https://pancakeswap.finance/swap", "_blank");
-    
-    // Simulate token purchase (in real app, this would be handled by blockchain integration)
-    setTimeout(() => {
-      setTokenBalance(tokenBalance + 100);
-      toast({
-        title: "Tokens Purchased",
-        description: "100 HR tokens have been added to your balance",
+        description: "", 
+        onboardingScript: "",
+        personality: "professional",
+        responseStyle: "helpful"
       });
+    setTimeout(() => {
+    } catch (error) {
+      // Error handling is done in the hook
+    }
     }, 2000);
   };
 
@@ -81,13 +93,18 @@ export default function AdminDashboard() {
         <div className="mb-8 flex justify-between items-start">
           <div>
             <h1 className="text-3xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent mb-2">
-              Admin Dashboard
+              {user?.role === 'admin' ? 'Admin' : 'HR'} Dashboard
             </h1>
             <p className="text-muted-foreground">
-              Create and manage your HR AI agents powered by Eliza OS
+              Welcome back, {user?.firstName}! Create and manage your HR AI agents powered by Eliza OS
             </p>
           </div>
-          <ThemeToggle />
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Button variant="outline" onClick={logout}>
+              Logout
+            </Button>
+          </div>
         </div>
 
         <div className="grid gap-6 md:grid-cols-3 mb-8">
@@ -124,10 +141,10 @@ export default function AdminDashboard() {
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-accent">
-                {agents.reduce((sum, agent) => sum + agent.tokensUsed, 0)}
+                {agents.reduce((sum, agent) => sum + (agent.metrics?.totalInteractions || 0), 0)}
               </div>
               <p className="text-xs text-muted-foreground">
-                Total tokens consumed
+                Total interactions
               </p>
             </CardContent>
           </Card>
@@ -143,17 +160,27 @@ export default function AdminDashboard() {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
-                {agents.map((agent) => (
-                  <div key={agent.id} className="flex items-center justify-between p-4 border rounded-lg bg-gradient-to-r from-muted/50 to-background">
+                {loading ? (
+                  <div className="text-center py-4">Loading agents...</div>
+                ) : agents.length === 0 ? (
+                  <div className="text-center py-4 text-muted-foreground">
+                    No agents created yet. Create your first agent below!
+                  </div>
+                ) : (
+                  agents.map((agent) => (
+                    <div key={agent._id} className="flex items-center justify-between p-4 border rounded-lg bg-gradient-to-r from-muted/50 to-background">
                     <div>
                       <h3 className="font-semibold">{agent.name}</h3>
                       <p className="text-sm text-muted-foreground">
-                        {agent.tokensUsed} tokens used
+                        {agent.metrics?.totalInteractions || 0} interactions • {agent.assignedEmployees?.length || 0} employees
                       </p>
                     </div>
-                    <Badge variant="secondary">{agent.status}</Badge>
+                    <Badge variant={agent.isActive ? "default" : "secondary"}>
+                      {agent.isActive ? "Active" : "Inactive"}
+                    </Badge>
                   </div>
-                ))}
+                  ))
+                )}
               </div>
               <Separator className="my-4" />
               <Button
@@ -221,13 +248,43 @@ export default function AdminDashboard() {
                 />
               </div>
               <div>
-                <Label htmlFor="tasks">Key Tasks</Label>
+                <Label htmlFor="onboardingScript">Welcome Message</Label>
                 <Textarea
-                  id="tasks"
-                  value={newAgent.tasks}
-                  onChange={(e) => setNewAgent({ ...newAgent, tasks: e.target.value })}
-                  placeholder="List the main tasks this agent will perform..."
+                  id="onboardingScript"
+                  value={newAgent.onboardingScript}
+                  onChange={(e) => setNewAgent({ ...newAgent, onboardingScript: e.target.value })}
+                  placeholder="Enter the welcome message for new employees..."
                 />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <Label htmlFor="personality">Personality</Label>
+                  <select
+                    id="personality"
+                    value={newAgent.personality}
+                    onChange={(e) => setNewAgent({ ...newAgent, personality: e.target.value })}
+                    className="w-full p-2 border rounded-md bg-background"
+                  >
+                    <option value="professional">Professional</option>
+                    <option value="friendly">Friendly</option>
+                    <option value="formal">Formal</option>
+                    <option value="casual">Casual</option>
+                  </select>
+                </div>
+                <div>
+                  <Label htmlFor="responseStyle">Response Style</Label>
+                  <select
+                    id="responseStyle"
+                    value={newAgent.responseStyle}
+                    onChange={(e) => setNewAgent({ ...newAgent, responseStyle: e.target.value })}
+                    className="w-full p-2 border rounded-md bg-background"
+                  >
+                    <option value="helpful">Helpful</option>
+                    <option value="detailed">Detailed</option>
+                    <option value="concise">Concise</option>
+                    <option value="empathetic">Empathetic</option>
+                  </select>
+                </div>
               </div>
               <div className="flex gap-2">
                 <Button onClick={handleCreateAgent} className="flex-1">
