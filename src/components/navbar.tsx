@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { Link } from "react-router-dom";
@@ -23,6 +24,9 @@ export function Navbar() {
           <nav className="hidden md:flex gap-6">
             <Link to="/features" className="text-sm font-medium hover:text-primary transition-colors">
               Features
+            </Link>
+            <Link to="/enterprise" className="text-sm font-medium hover:text-primary transition-colors">
+              Enterprise
             </Link>
             <Link to="/#hr-token" className="text-sm font-medium hover:text-primary transition-colors">
               HR Token
